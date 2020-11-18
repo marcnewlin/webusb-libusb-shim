@@ -1,0 +1,19 @@
+div#terminal-history {
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+}
+
+div.terminal-line {
+  padding-bottom: 0.25em;
+  display: block;
+}
+
+div.stderr {
+  font-weight: 600;
+}
+
+button#go {
+  margin-left: 2em; 
+  font-weight: bold;
+}
