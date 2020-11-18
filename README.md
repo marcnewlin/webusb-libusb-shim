@@ -25,5 +25,5 @@ $ cd build
 $ python3 -m http.server
 ```
 
-Navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in Chrome, and press `Start`.
+Navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in Chrome (or another compatible browser), and press `Start`.
 
