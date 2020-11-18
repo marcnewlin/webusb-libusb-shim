@@ -5,18 +5,18 @@ list-to-csv=$(subst $() $(),$(comma),$(strip $(addsuffix ",$(addprefix ",${1})))
 
 # libusb shim - C source files
 LIBUSB_SOURCE=src/libusb.c \
-              src/webusb.c
+							src/webusb.c
 
 
 # functions emcc should ignore when pruning unused functions
 LIBUSB_EXPORTS=_main \
-               _libusb_exit \
+							 _libusb_exit \
 							 _malloc
 
 
 # Emscripten runtime functions exported to JS
 RUNTIME_EXPORTS=callMain \
-							  ccall \
+								ccall \
 								FS \
 								lengthBytesUTF8 \
 								stringToUTF8 \
@@ -26,7 +26,7 @@ RUNTIME_EXPORTS=callMain \
 
 # async JS functions usable by Asyncify
 ASYNCIFY_FUNCS=request_device_access \
-               open_device \
+							 open_device \
 							 open_device_with_vid_pid \
 							 close_device \
 							 claim_interface \
