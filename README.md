@@ -9,6 +9,11 @@ receive IQ to `MEMFS`, and download the resulting IQ file.
 
 ![](demo.gif)
 
+## Prerequisites
+
+* [Emscripten](https://emscripten.org/docs/getting_started/downloads.html#platform-notes-installation-instructions-sdk)
+* Chrome-based browser (note that Ubuntu's Chromium Snap does not have access to USB devices)
+
 ## build and run
 
 ```
