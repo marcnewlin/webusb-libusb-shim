@@ -25,7 +25,12 @@
           loader: "hackrf_transfer.js",
           args: ["-r", "out.iq", "-f", "915000000", "-n", "10000000", "-s", "1000000"],
           out_file: "out.iq",
-        }
+        },
+
+        hackrf_firmware_mayhem: {
+          loader: "hackrf_spiflash.js",
+          args: ["-v", "-w", "/firmware/portapack-h1_h2-mayhem.bin"],
+        },
       };
 
 
@@ -39,9 +44,10 @@
         },
 
         // application config
-        app: app_configs.hackrf_transfer,
+        // app: app_configs.hackrf_transfer,
         // app: app_configs.hackrf_info,
         // app: app_configs.hackrf_clock,
+        app: app_configs.hackrf_firmware_mayhem,
       };
 
     </script>
