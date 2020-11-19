@@ -20,10 +20,10 @@
           args: ["-a"],
         },
 
-        // hackrf_transfer -r out.iq -f 915MHz -n 10000000 -s 1000000
+        // hackrf_transfer -r out.iq -f 915000000 -n 10000000 -s 1000000
         hackrf_transfer: {
           loader: "hackrf_transfer.js",
-          args: ["-r", "out.iq", "-f", "915MHz", "-n", "10000000", "-s", "1000000"],
+          args: ["-r", "out.iq", "-f", "915000000", "-n", "10000000", "-s", "1000000"],
           out_file: "out.iq",
         }
       };
