@@ -55,14 +55,14 @@ FLAGS=-s WASM=1 \
 
 .PHONY: client
 
-all: clean hackrf_info hackrf_clock hackrf_transfer
+all: clean hackrf_info hackrf_clock hackrf_transfer hackrf_spiflash
 
 clean:
 	rm -rf build/
 	mkdir -p build
 
 hackrf_%: client
-	emcc $(FLAGS) $(INCLUDE) -o build/$@.js $(LIBUSB_SOURCE) -DTOOL_RELEASE='"wasm"' -Iexternal/hackrf/host/libhackrf/src external/hackrf/host/libhackrf/src/hackrf.c external/hackrf/host/hackrf-tools/src/$@.c
+	emcc $(FLAGS) $(INCLUDE) -o build/$@.js $(LIBUSB_SOURCE) -DTOOL_RELEASE='"wasm"' -Iexternal/hackrf/host/libhackrf/src external/hackrf/host/libhackrf/src/hackrf.c external/hackrf/host/hackrf-tools/src/$@.c --preload-file firmware
 
 client:
 	cp client/* build/
