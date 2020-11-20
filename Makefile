@@ -49,20 +49,22 @@ FLAGS=-s WASM=1 \
 			-s SAFE_HEAP=0 \
 			-s EXIT_RUNTIME=1 \
 			-s PROXY_TO_PTHREAD=1 \
+			-s FORCE_FILESYSTEM=1 \
 			--pre-js src/webusb.js \
 			-pthread
 
 
 .PHONY: client
 
-all: clean hackrf_info hackrf_clock hackrf_transfer hackrf_spiflash
+all: hackrf_info hackrf_clock hackrf_transfer hackrf_spiflash
 
 clean:
 	rm -rf build/
 	mkdir -p build
 
 hackrf_%: client
-	emcc $(FLAGS) $(INCLUDE) -o build/$@.js $(LIBUSB_SOURCE) -DTOOL_RELEASE='"wasm"' -Iexternal/hackrf/host/libhackrf/src external/hackrf/host/libhackrf/src/hackrf.c external/hackrf/host/hackrf-tools/src/$@.c --preload-file firmware
+	emcc $(FLAGS) $(INCLUDE) -o build/$@.js $(LIBUSB_SOURCE) -DTOOL_RELEASE='"wasm"' -Iexternal/hackrf/host/libhackrf/src external/hackrf/host/libhackrf/src/hackrf.c external/hackrf/host/hackrf-tools/src/$@.c
 
 client:
 	cp client/* build/
+	cp -r assets build/
