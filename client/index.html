@@ -1,54 +1,13 @@
 <html>
   <head>
-    
     <link href="client.css" rel="stylesheet" />
-
-    <script>
-
-      // command-line app configurations
-      var app_configs = {
-
-        // hackrf_info
-        hackrf_info: {
-          loader: "hackrf_info.js",
-          args: [],
-        },
-
-        // hackrf_clock -a
-        hackrf_clock: {
-          loader: "hackrf_clock.js",
-          args: ["-a"],
-        },
-
-        // hackrf_transfer -r out.iq -f 915000000 -n 10000000 -s 1000000
-        hackrf_transfer: {
-          loader: "hackrf_transfer.js",
-          args: ["-r", "out.iq", "-f", "915000000", "-n", "10000000", "-s", "1000000"],
-          out_file: "out.iq",
-        }
-      };
-
-
-      // runtime configuration
-      var runtime_config = {
-
-        // USB VID/PID
-        usb: {
-          vid: 0x1d50,
-          pid: 0x6089,
-        },
-
-        // application config
-        app: app_configs.hackrf_transfer,
-        // app: app_configs.hackrf_info,
-        // app: app_configs.hackrf_clock,
-      };
-
-    </script>
+    
+    <script src="config.js"></script>
     <script src="client.js"></script>
   </head>
 
   <body>
+    <div id="command-list"></div>
     <div id="terminal-history"></div>
   </body>
 </html>
