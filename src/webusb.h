@@ -15,3 +15,4 @@ int control_transfer(uint8_t request_type, uint8_t bRequest, uint16_t wValue,
                      uint16_t wIndex, uint8_t *data, uint16_t wLength, unsigned int timeout);
 int open_device_with_vid_pid(uint16_t vid, uint16_t pid);
 int submit_bulk_in_transfer(uint8_t ep, int length, uint8_t * buffer, struct libusb_transfer *transfer);
+int submit_bulk_out_transfer(uint8_t ep, int length, uint8_t * buffer, struct libusb_transfer *transfer);

@@ -25,10 +25,25 @@ var device_configs = {
       },
 
       // hackrf_transfer -r out.iq -f 915000000 -n 10000000 -s 1000000
-      hackrf_transfer: {
+      hackrf_transfer_receive: {
         loader: "hackrf_transfer.js",
-        args: ["-r", "out.iq", "-f", "915000000", "-n", "10000000", "-s", "1000000"],
-        output_files: ["out.iq"],
+        args: ["-r", "receive.iq", "-f", "915000000", "-n", "10000000", "-s", "1000000"],
+        output_files: ["receive.iq"],
+      },
+
+      // hackrf_transfer -t /tmp/test.iq -f 915000000 -s 1000000
+      hackrf_transfer_transmit: {
+        loader: "hackrf_transfer.js",
+        args: ["-t", "/data/transmit.iq", "-f", "915000000", "-n", "10000000", "-s", "1000000"],
+        input_files: [
+          {
+            // remote url, passed into a fetch(...) request
+            remote_url: "/assets/hackrf/hackrf_transfer/transmit.iq",
+
+            // target file path (MEMFS filesystem)
+            local_path: "/data/transmit.iq",
+          }
+        ],
       },
 
       // hackrf_spiflash -v -w /firmware/portapack-h1_h2-mayhem.bin"

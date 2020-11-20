@@ -65,6 +65,11 @@ int submit_bulk_in_transfer(uint8_t ep, int length, uint8_t * buffer, struct lib
 };
 
 
+int submit_bulk_out_transfer(uint8_t ep, int length, uint8_t * buffer, struct libusb_transfer *transfer){
+  return MAIN_THREAD_EM_ASM_INT({ return _submit_bulk_out_transfer($0, $1, $2, $3); }, ep, length, buffer, transfer);
+};
+
+
 int request_device_access() {
 
   // get the configured VID/PID from the main thread

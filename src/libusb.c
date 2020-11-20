@@ -383,14 +383,14 @@ int libusb_submit_transfer(struct libusb_transfer *transfer)
                                                 transfer->length, 
                                                 transfer->buffer, 
                                                 transfer);
-      else {
-        printf("not implemented: async bulk output transfers");
-        return -1;
-      }
+      else return submit_bulk_out_transfer(ep, 
+                                           transfer->length, 
+                                           transfer->buffer, 
+                                           transfer);
       break;
     default:
       printf("Transfer type not implemented: %u", transfer->type);
-      return -1;
+      return 0;
   }
 
   return LIBUSB_SUCCESS;

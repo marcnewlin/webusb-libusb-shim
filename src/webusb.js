@@ -364,3 +364,39 @@ async function _submit_bulk_in_transfer(ep, len, buffer, transfer) {
 
   return LIBUSB_SUCCESS;
 }
+
+
+// submit an asynchronous bulk output transfer
+async function _submit_bulk_out_transfer(ep, len, buffer, transfer) {
+
+  const LIBUSB_TRANSFER_COMPLETED = 0;
+  const LIBUSB_TRANSFER_CANCELLED = 3;
+  const LIBUSB_SUCCESS = 0;
+
+  if(active_device === undefined) {
+    console.warn("_submit_bulk_in_transfer called when active_device === undefined");
+    return false;
+  }
+
+  // perform the transfer
+  let result;
+  let data;
+  try {
+    data = new Uint8Array(len);
+    for(let x = 0; x < len; x++) {
+      data[x] = getValue(buffer+x, "i8");
+    }
+    result = await active_device.transferOut(ep, data);
+  } catch (error) {
+    console.warn("transfer error in _submit_bulk_out_transfer");
+    return false;
+  } 
+
+  // set the transfer status to completed
+  setValue(transfer+20, data.length, "i32");                      // actualLength
+  if(getValue(transfer+12, "i32") != LIBUSB_TRANSFER_CANCELLED) { // status
+    setValue(transfer+12, LIBUSB_TRANSFER_COMPLETED, "i32");      // status
+  }
+
+  return LIBUSB_SUCCESS;
+}
