@@ -393,7 +393,7 @@ async function _submit_bulk_out_transfer(ep, len, buffer, transfer) {
   } 
 
   // set the transfer status to completed
-  setValue(transfer+20, data.length, "i32");                      // actualLength
+  setValue(transfer+20, result.bytesWritten, "i32");                      // actualLength
   if(getValue(transfer+12, "i32") != LIBUSB_TRANSFER_CANCELLED) { // status
     setValue(transfer+12, LIBUSB_TRANSFER_COMPLETED, "i32");      // status
   }
